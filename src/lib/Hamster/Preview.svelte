@@ -33,11 +33,11 @@
 >
     <!-- preedit -->
     <div class="w-full px-2">
-        <span style:color={schema.text_color.rgba()} class="px-1 text-xs"> zh </span>
+        <span style:color={schema.text_color.rgba()} class="px-1 text-xs"> jzh </span>
     </div>
     <!-- candidates -->
     <div class="w-full px-2 gap-1 flex items-center text-sm">
-        {#each ["其", "虍", "虎", "𮓗"] as cand, index}
+        {#each ["偡", "俿"] as cand, index}
             <span
                 style:color={index === 0
                     ? schema.hilited_candidate_text_color.rgba()
@@ -57,7 +57,7 @@
                         : schema.comment_text_color.rgba()}
                     class="text-xs"
                 >
-                    {["〔·zhb〕", "〔虍·zh〕", "〔虎·zh zhh〕", "〔𮓗·zh〕"][index]}
+                    {["〔亻𠃊·jzha〕", "〔亻虎·jzh〕"][index]}
                 </span>
             </span>
         {/each}

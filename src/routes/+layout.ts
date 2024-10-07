@@ -6,8 +6,8 @@ export const trailingSlash: string = "always";
 
 // 導航列表
 var navigations: [string, string][] = [
-    ["首页·友链列表", "/"],
-    ["仓输入法·工具", "/hamster-tools/"],
+    ["首页", "/"],
+    ["仓输入法·主题设计工具", "/hamster-tools/"],
     //["雞蛋餅·主頁", "/wafel/"],
 ];
 // 鳴謝列表

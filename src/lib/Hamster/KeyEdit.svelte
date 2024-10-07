@@ -144,7 +144,7 @@
         <ActionEdit bind:action={key.action} bind:clipAction />
     </div>
 
-    <Details summary="劃動動作配置">
+    <Details summary="划动动作配置">
         <div class="p-1.5 gap-2 flex flex-col">
             {#each [2, 1, 0, 3] as index (key.swipe[index].id)}
                 <div class="flex flex-col items-center p-[0.5px] rounded-md variant-ringed">
@@ -200,7 +200,7 @@
     </Details>
 
     <!-- 長按動作 -->
-    <Details summary="長按動作配置">
+    <Details summary="长按动作配置">
         <div class="p-1.5 gap-2 flex flex-col">
             <IconRange
                 icon="mdi:table-cog"
@@ -255,7 +255,7 @@
             <div class="h-10 px-2 flex items-center rounded-tl-md variant-ringed">
                 <Icon icon="mdi:weather-sunny" />
             </div>
-            <span class="h-10 px-2 items-center flex variant-ringed grow shrink"> 亮色樣式 </span>
+            <span class="h-10 px-2 items-center flex variant-ringed grow shrink"> 亮色样式 </span>
             <select
                 bind:value={key.lightStyle}
                 class="w-[50%] h-10 px-2 bg-transparent rounded-tr-md variant-ringed hover:variant-ghost"
@@ -270,7 +270,7 @@
             <div class="h-10 px-2 flex items-center rounded-bl-md variant-ringed">
                 <Icon icon="mdi:weather-night" />
             </div>
-            <span class="h-10 px-2 items-center flex variant-ringed grow shrink"> 暗色樣式 </span>
+            <span class="h-10 px-2 items-center flex variant-ringed grow shrink"> 暗色样式 </span>
             <select
                 bind:value={key.darkStyle}
                 class="w-[50%] h-10 px-2 bg-transparent rounded-br-md variant-ringed hover:variant-ghost"

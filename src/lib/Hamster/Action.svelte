@@ -72,14 +72,14 @@
             {/each}
         </select>
         <button
-            title="複製動作配置"
+            title="复制动作配置"
             on:click={copyAction}
             class="h-10 px-2 flex items-center variant-ringed hover:variant-ghost active:scale-95"
         >
             <Icon height="20" icon="mdi:content-copy" />
         </button>
         <button
-            title="粘貼動作配置"
+            title="粘贴动作配置"
             on:click={pasteAction}
             class="h-10 px-2 flex items-center variant-ringed hover:variant-ghost active:scale-95"
             class:rounded-br-md={funcKeys}

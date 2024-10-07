@@ -57,9 +57,9 @@
             <div class="h-10 px-2 flex items-center rounded-tl-md variant-ringed">
                 <Icon icon="mdi:rename-box" />
             </div>
-            <span class="h-10 px-2 flex items-center grow shrink variant-ringed"> 佈局名稱 </span>
+            <span class="h-10 px-2 flex items-center grow shrink variant-ringed"> 布局名称 </span>
             <input
-                title="鍵盤名稱"
+                title="键盘名称"
                 type="text"
                 bind:value={layout.name}
                 placeholder="天行鍵"
@@ -76,7 +76,7 @@
                     layout.primary = !layout.primary;
                 }}
             >
-                點擊切換: {layout.primary ? "主鍵盤" : "非主鍵盤"}
+                点击切换: {layout.primary ? "主键盘" : "非主键盘"}
             </button>
         </div>
     </div>
@@ -85,7 +85,7 @@
     <div class="w-full p-[0.5px] rounded-md variant-ringed">
         <IconRange
             icon="mdi:table-cog"
-            title="按鍵行数"
+            title="按键行数"
             value={layout.rows.length}
             on:change={onRowCountChange}
             min="0"

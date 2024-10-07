@@ -10,7 +10,7 @@
     <div class="p-[0.5px] flex flex-col rounded-md variant-ringed">
         <div class="w-full gap-2 flex items-center rounded-t-md variant-ringed">
             <Icon icon="mdi:content-save-cog" class="p-2 w-10 h-10" />
-            <span class="grow shrink"> 方案名稱代碼 </span>
+            <span class="grow shrink"> 方案名称代码 </span>
             <input
                 type="text"
                 bind:value={schema.schemaName}
@@ -19,7 +19,7 @@
         </div>
         <div class="w-full gap-2 flex items-center variant-ringed">
             <Icon icon="mdi:rename-box" class="p-2 w-10 h-10" />
-            <span class="grow shrink"> 方案顯示名稱 </span>
+            <span class="grow shrink"> 方案显示名称 </span>
             <input
                 type="text"
                 bind:value={schema.name}

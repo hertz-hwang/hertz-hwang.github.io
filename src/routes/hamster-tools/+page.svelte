@@ -303,23 +303,7 @@
         </SmoothDiv>
     </div>
 
-    <div class="w-full max-w-2xl mx-auto grid grid-cols-1 grid-rows-1 lg:col-span-2">
-        <div class="italic text-xs">
-            /** 倉輸入法而今已實現内建佈局和配色方案編輯器,<br /> */
-            /** 是故本工具將不再添加新功能.<br /> */
-            /** 您可通過「導出配置」來將以往配置輸出並轉入内建編輯器,<br /> */
-            /** 感謝您的信賴與支持, 江湖路遠, 後會有期!<br /> */
-            /** 餅乾 敬上 */
-        </div>
-    </div>
-
-    <SmoothDiv height outerClass="w-full max-w-2xl mx-auto rounded-md hover:variant-ghost lg:col-span-2" class="w-full">
-        <details class="p-2 w-full">
-            /** <summary class="max-w-md mx-auto p-2">可能有用的簡易説明書</summary> */
-            <summary class="max-w-md mx-auto p-2"> </summary>
-            <Manual />
-        </details>
-    </SmoothDiv>
+    
 </div>
 
 <style>

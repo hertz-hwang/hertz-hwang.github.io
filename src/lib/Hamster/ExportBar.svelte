@@ -163,7 +163,7 @@
             on:click={copyKeyboardKeyStyles}
             class={classNames}
         >
-            複製样式
+            复制样式
         </IconButton>
     </div>
 </div>

@@ -57,7 +57,7 @@
                         : schema.comment_text_color.rgba()}
                     class="text-xs"
                 >
-                    {["[·zhb]", "[虍·zh]", "[虎·zh zhh]", "[𮓗·zh]"][index]}
+                    {["\[·zhb\]", "\[虍·zh\]", "\[虎·zh zhh\]", "\[𮓗·zh\]"][index]}
                 </span>
             </span>
         {/each}

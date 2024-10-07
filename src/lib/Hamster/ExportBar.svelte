@@ -103,8 +103,8 @@
 <div class="w-full gap-1 flex flex-col">
     <div class="flex gap-1">
         <!-- import -->
-        <IconButton title="導入配色或佈局文件" icon="mdi:import" on:click={onClickImport} class={classNames}>
-            導入配置
+        <IconButton title="导入配色或布局文件" icon="mdi:import" on:click={onClickImport} class={classNames}>
+            导入配置
             <div class="w-0 h-0 overflow-hidden">
                 <input
                     type="file"
@@ -117,53 +117,53 @@
         </IconButton>
         <!-- export -->
         <IconButton
-            title="導出配置 (含配色方案, 鍵盤佈局及按鍵樣式)"
+            title="导出配置 (含配色方案, 键盘布局及按键样式)"
             icon="mdi:export"
             on:click={exportConfigs}
             class={classNames}
         >
-            導出配置
+            导出配置
         </IconButton>
     </div>
     <div class="flex gap-1">
-        <IconButton title="導出配色文件" icon="mdi:export" on:click={exportColorSchemas} class={classNames}>
-            導出配色
+        <IconButton title="导出配色文件" icon="mdi:export" on:click={exportColorSchemas} class={classNames}>
+            导出配色
         </IconButton>
-        <IconButton title="導出佈局文件" icon="mdi:export" on:click={exportKeyboardLayouts} class={classNames}>
-            導出佈局
+        <IconButton title="导出布局文件" icon="mdi:export" on:click={exportKeyboardLayouts} class={classNames}>
+            导出布局
         </IconButton>
-        <IconButton title="導出按鍵樣式表" icon="mdi:export" on:click={exportKeyboardKeyStyles} class={classNames}>
-            導出樣式
+        <IconButton title="导出按键样式表" icon="mdi:export" on:click={exportKeyboardKeyStyles} class={classNames}>
+            导出样式
         </IconButton>
     </div>
     <!-- copy -->
     <div class="flex gap-1">
         <IconButton
-            title="複製配色代碼"
+            title="复制配色代码"
             disabled={colorSchemasCopied}
             icon={colorSchemasCopied ? "mdi:check" : "mdi:clipboard"}
             on:click={copyColorSchemas}
             class={classNames}
         >
-            複製配色
+            复制配色
         </IconButton>
         <IconButton
-            title="複制佈局代碼"
+            title="复制布局代码"
             disabled={keyboardLayoutInlineCopied}
             icon={keyboardLayoutInlineCopied ? "mdi:check" : "mdi:clipboard"}
             on:click={copyKeyboardLayouts}
             class={classNames}
         >
-            複製佈局
+            复制布局
         </IconButton>
         <IconButton
-            title="複製按鍵樣式表"
+            title="复制按键样式表"
             disabled={keyStylesCopied}
             icon={keyStylesCopied ? "mdi:check" : "mdi:clipboard"}
             on:click={copyKeyboardKeyStyles}
             class={classNames}
         >
-            複製樣式
+            複製样式
         </IconButton>
     </div>
 </div>

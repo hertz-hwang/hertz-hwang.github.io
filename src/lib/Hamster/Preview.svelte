@@ -63,7 +63,7 @@
         {/each}
         <span class="grow" />
         <button
-            title={(landscape ? "預覽: 横屏" : "預覽: 竪屏") + "\n注: 行高和鍵寛的配置值在横竪屏模式下是各自獨立的"}
+            title={(landscape ? "预览: 横屏" : "预览: 竖屏") + "\n注: 行高和键宽的配置值在横竖屏模式下是各自独立的"}
             on:click={() => {
                 landscape = !landscape;
             }}
@@ -72,7 +72,7 @@
             <Icon height="20" icon={landscape ? "mdi:crop-landscape" : "mdi:crop-portrait"} />
         </button>
         <button
-            title={sticky ? "取消置頂" : "置頂預覽"}
+            title={sticky ? "取消置顶" : "置顶预览"}
             on:click={onStickyClick}
             style:color={schema.comment_text_color.rgba()}
         >

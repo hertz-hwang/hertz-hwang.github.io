@@ -49,9 +49,9 @@
     const [actExport, actTemp, actSave, actBatch] = [1, 2, 3, 4];
     var actionTab = 0;
     const actNames = {
-        [actExport]: "導出",
+        [actExport]: "导出",
         [actTemp]: "模板",
-        [actSave]: "檔案",
+        [actSave]: "存档",
         [actBatch]: "操作",
     };
     const selectActTab = (tab: number) => {
@@ -66,7 +66,7 @@
     var galleryTab = 0;
     const [galLayout, galColor] = [0, 1];
     const galNames = {
-        [galLayout]: "鍵盤佈局",
+        [galLayout]: "键盘布局",
         [galColor]: "配色方案",
     };
     const selectGalTab = (tab: number) => {
@@ -78,9 +78,9 @@
     const editNames = {
         [editKey]: "按鍵",
         [editColor]: "配色",
-        [editLayout]: "佈局",
+        [editLayout]: "布局",
         [editInset]: "内距",
-        [editKeyStyle]: "樣式",
+        [editKeyStyle]: "样式",
     };
     const selectEditTab = (tab: number) => {
         editorTab = tab;
@@ -289,7 +289,7 @@
                             }}
                             class="p-2 gap-2 w-full flex items-center rounded-md variant-ringed hover:variant-ghost"
                         >
-                            <span class="grow text-left">使用統一内距</span>
+                            <span class="grow text-left">使用统一内距</span>
                         </IconButton>
 
                         <ButtonInsets bind:buttonInsets={currentLayout.buttonInsets} />
@@ -305,17 +305,18 @@
 
     <div class="w-full max-w-2xl mx-auto grid grid-cols-1 grid-rows-1 lg:col-span-2">
         <div class="italic text-xs">
-            倉輸入法而今已實現内建佈局和配色方案編輯器,<br />
-            是故本工具將不再添加新功能.<br />
-            您可通過「導出配置」來將以往配置輸出並轉入内建編輯器,<br />
-            感謝您的信賴與支持, 江湖路遠, 後會有期!<br />
-            餅乾 敬上
+            /** 倉輸入法而今已實現内建佈局和配色方案編輯器,<br /> */
+            /** 是故本工具將不再添加新功能.<br /> */
+            /** 您可通過「導出配置」來將以往配置輸出並轉入内建編輯器,<br /> */
+            /** 感謝您的信賴與支持, 江湖路遠, 後會有期!<br /> */
+            /** 餅乾 敬上 */
         </div>
     </div>
 
     <SmoothDiv height outerClass="w-full max-w-2xl mx-auto rounded-md hover:variant-ghost lg:col-span-2" class="w-full">
         <details class="p-2 w-full">
-            <summary class="max-w-md mx-auto p-2">可能有用的簡易説明書</summary>
+            /** <summary class="max-w-md mx-auto p-2">可能有用的簡易説明書</summary> */
+            <summary class="max-w-md mx-auto p-2"> </summary>
             <Manual />
         </details>
     </SmoothDiv>

@@ -10,7 +10,7 @@ var profiles: Profile[] = profilesFromYaml(profilesYaml);
 
 export const load: PageLoad = (_) => {
     return {
-        title: "首頁·友鏈列表",
+        title: "首页",
         profiles,
     };
 };

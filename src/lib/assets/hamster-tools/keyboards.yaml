@@ -1,5 +1,5 @@
 keyboards:
-  - name: 26鍵字母
+  - name: 26键字母
     rows:
       - keys:
           - action: character(q)
@@ -85,7 +85,7 @@ keyboards:
           - action: space
           - action: enter
             width: percentage(0.16)
-  - name: 數字符號
+  - name: 數字符号
     rows:
       - keys:
           - action: character(1)
@@ -276,7 +276,7 @@ keyboards:
           - action: character(.)
           - action: enter
             width: percentage(0.2)
-  - name: 双鍵14
+  - name: 双键14
     rows:
       - keys:
           - action: character(q)
@@ -323,7 +323,7 @@ keyboards:
           - action: character(.)
           - action: enter
             width: percentage(0.2)
-  - name: 双鍵18
+  - name: 双键18
     rows:
       - keys:
           - action: character(q)

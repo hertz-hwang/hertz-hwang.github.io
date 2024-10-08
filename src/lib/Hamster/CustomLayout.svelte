@@ -7,7 +7,7 @@
     import { toastError } from "$lib/utils/error";
 
     export var layout: Keyboard;
-    /** 自定義鍵盤存儲位 */
+    /** 自定义键盘存储位 */
     export var customKeyboards: object[];
 
     if (!customKeyboards || customKeyboards.length === 0) {
@@ -27,11 +27,11 @@
 
     const toastStore = getToastStore();
     const nameEmpty = "空的";
-    /** LocalStorage 自定義鍵檔案鍵名 */
+    /** LocalStorage 自定义键存档键名 */
     function customKeyboardKey(index: number): string {
         return `customKeyboard${index}`;
     }
-    /** 加載自定義鍵盤檔案 */
+    /** 加载自定义键盘存档 */
     function loadCustom(index: number): void {
         if (layout && customKeyboards[index]) {
             var initName = layout.name;
@@ -39,12 +39,12 @@
             layout.name = initName;
         }
     }
-    /** 删除自定義鍵盤檔案 */
+    /** 删除自定义键盘存档 */
     function removeCustom(index: number): void {
         localStorage.removeItem(customKeyboardKey(index));
         customKeyboards[index] = { name: nameEmpty };
     }
-    /** 覆蓋自定義鍵盤檔案 */
+    /** 覆盖自定义键盘存档 */
     function overrideCustom(index: number): void {
         if (layout) {
             var obj = layout.toObject();

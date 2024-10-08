@@ -5,22 +5,22 @@
 </script>
 
 <div class="flex flex-col gap-2 p-2">
-    <span class="p-1 m-auto rounded-md variant-soft"> 一張字根圖 </span>
+    <span class="p-1 m-auto rounded-md variant-soft"> 一張字根图 </span>
     <div class="flex overflow-auto">
         <Keyboard mappings={into_mappings} />
     </div>
 
-    <span class="p-1 m-auto rounded-md variant-soft"> 一個下載頁 </span>
+    <span class="p-1 m-auto rounded-md variant-soft"> 一個下载頁 </span>
     <div class="btn-group variant-ghost m-auto">
         <a target="_blank" href="https://github.com/lost-melody/rime-smyh" class="gap-1">
             <Icon icon="mdi:github" />
-            訪問倉庫
+            訪问倉庫
         </a>
         <a target="_blank" href="https://github.com/lost-melody/rime-smyh/releases" class="gap-1">
             <Icon icon="mdi:download" />
-            下載方案包
+            下载方案包
         </a>
     </div>
 
-    <span class="p-1 m-auto rounded-md variant-soft"> 餘下的, 需要時間來慢慢長大... </span>
+    <span class="p-1 m-auto rounded-md variant-soft"> 餘下的, 需要時間來慢慢长大... </span>
 </div>

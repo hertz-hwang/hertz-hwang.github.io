@@ -12,7 +12,7 @@
 </script>
 
 <div class="w-64 card card-hover p-4 gap-2 flex flex-col items-center">
-    <!-- 頭像, 名稱及主頁鏈接 -->
+    <!-- 頭像, 名称及主頁鏈接 -->
     <a {target} {href} class="flex gap-2 p-1 hover:variant-soft rounded-full">
         <img {src} alt="頭像" class="w-12 h-12 rounded-full" />
         <div class="flex flex-col justify-around">
@@ -29,7 +29,7 @@
             {/each}
         </div>
     {/if}
-    <!-- 站點鏈接 -->
+    <!-- 站点鏈接 -->
     {#if links.length !== 0}
         <div class="flex gap-1">
             {#each links as link}

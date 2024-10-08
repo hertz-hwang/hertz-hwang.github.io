@@ -2,9 +2,9 @@
     import { tweened, type TweenedOptions } from "svelte/motion";
     import { cubicOut } from "svelte/easing";
 
-    /** 應用到外層容器的類名 */
+    /** 應用到外層容器的类名 */
     export var outerClass: string = "";
-    /** 是否平滑寛度 */
+    /** 是否平滑宽度 */
     export var width: boolean = false;
     /** 是否平滑高度 */
     export var height: boolean = false;

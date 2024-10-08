@@ -38,54 +38,54 @@
     </div>
     <div class="w-full gap-2 flex items-center">
         <Icon icon="mdi:rounded-corner" class="p-2 w-10 h-10" />
-        <span class="grow shrink"> 按鍵圓角 </span>
+        <span class="grow shrink"> 按键圆角 </span>
         <input type="range" min="0" max="32" bind:value={schema.corner_radius} class="w-[30%]" />
         <span class="w-6 code"> {schema.corner_radius} </span>
     </div>
-    <ColorSelector title="鍵盤背景" bind:color={schema.back_color} />
-    <ColorSelector title="按鍵背景" bind:color={schema.button_back_color} />
-    <ColorSelector title="按鍵按下背景" bind:color={schema.button_pressed_back_color} />
-    <ColorSelector title="按鍵氣泡背景" bind:color={schema.button_bubble_back_color} />
-    <ColorSelector title="按鍵文字" bind:color={schema.button_front_color} />
-    <ColorSelector title="按鍵按下文字" bind:color={schema.button_pressed_front_color} />
-    <ColorSelector title="按鍵劃動文字" bind:color={schema.button_swipe_front_color} />
-    <ColorSelector title="按鍵按下劃動文字" bind:color={schema.button_swipe_pressed_front_color} />
+    <ColorSelector title="键盘背景" bind:color={schema.back_color} />
+    <ColorSelector title="按键背景" bind:color={schema.button_back_color} />
+    <ColorSelector title="按键按下背景" bind:color={schema.button_pressed_back_color} />
+    <ColorSelector title="按键气泡背景" bind:color={schema.button_bubble_back_color} />
+    <ColorSelector title="按键文字" bind:color={schema.button_front_color} />
+    <ColorSelector title="按键按下文字" bind:color={schema.button_pressed_front_color} />
+    <ColorSelector title="按键划动文字" bind:color={schema.button_swipe_front_color} />
+    <ColorSelector title="按键按下划动文字" bind:color={schema.button_swipe_pressed_front_color} />
     <div class="w-full gap-2 flex items-center">
         <Icon icon="mdi:format-size" class="p-2 w-10 h-10" />
-        <span class="grow shrink"> 鍵面字體大小 </span>
+        <span class="grow shrink"> 键面字体大小 </span>
         <input type="range" min="0" max="32" bind:value={schema.font_size} class="w-[30%]" />
         <span class="w-6 code"> {schema.font_size} </span>
     </div>
     <div class="w-full gap-2 flex items-center">
         <Icon icon="mdi:format-size" class="p-2 w-10 h-10" />
-        <span class="grow shrink"> 劃動字體大小 </span>
+        <span class="grow shrink"> 划动字体大小 </span>
         <input type="range" min="0" max="24" bind:value={schema.swipe_font_size} class="w-[30%]" />
         <span class="w-6 code"> {schema.swipe_font_size} </span>
     </div>
-    <ColorSelector title="按鍵邊框" bind:color={schema.border_color} />
+    <ColorSelector title="按键边框" bind:color={schema.border_color} />
     <div class="w-full gap-2 flex items-center">
         <Icon icon="mdi:border-all-variant" class="px-1 w-10 h-8" />
-        <span class="grow shrink"> 邊框寛度 </span>
+        <span class="grow shrink"> 边框宽度 </span>
         <input type="range" min="0" max="8" bind:value={schema.border_size} class="w-[30%]" />
         <span class="w-6 code"> {schema.border_size} </span>
     </div>
-    <ColorSelector title="按鍵下邊框" bind:color={schema.lower_edge_color} />
-    <ColorSelector title="按鍵陰影" bind:color={schema.shadow_color} />
+    <ColorSelector title="按键下边框" bind:color={schema.lower_edge_color} />
+    <ColorSelector title="按键阴影" bind:color={schema.shadow_color} />
     <div class="w-full gap-2 flex items-center">
         <Icon icon="mdi:format-size" class="p-2 w-10 h-10" />
-        <span class="grow shrink"> 按鍵陰影大小 </span>
+        <span class="grow shrink"> 按键阴影大小 </span>
         <input type="range" min="0" max="8" bind:value={schema.shadow_size} class="w-[30%]" />
         <span class="w-6 code"> {schema.shadow_size} </span>
     </div>
-    <ColorSelector title="預編輯區文字" bind:color={schema.text_color} />
-    <ColorSelector title="首選文字" bind:color={schema.hilited_candidate_text_color} />
-    <ColorSelector title="首選註釋" bind:color={schema.hilited_comment_text_color} />
-    <ColorSelector title="首選背景" bind:color={schema.hilited_candidate_back_color} />
-    <ColorSelector title="首選序號" bind:color={schema.hilited_candidate_label_color} />
-    <ColorSelector title="次選文字" bind:color={schema.candidate_text_color} />
-    <ColorSelector title="次選註釋" bind:color={schema.comment_text_color} />
-    <ColorSelector title="次選序號" bind:color={schema.label_color} />
-    <ColorSelector title="長按首選背景" bind:color={schema.hilited_callout_back_color} />
-    <ColorSelector title="長按首選文字" bind:color={schema.hilited_callout_foreground_color} />
-    <ColorSelector title="長按氣泡背景" bind:color={schema.action_callout_back_color} />
+    <ColorSelector title="预编辑区文字" bind:color={schema.text_color} />
+    <ColorSelector title="首选文字" bind:color={schema.hilited_candidate_text_color} />
+    <ColorSelector title="首选注释" bind:color={schema.hilited_comment_text_color} />
+    <ColorSelector title="首选背景" bind:color={schema.hilited_candidate_back_color} />
+    <ColorSelector title="首选序号" bind:color={schema.hilited_candidate_label_color} />
+    <ColorSelector title="次选文字" bind:color={schema.candidate_text_color} />
+    <ColorSelector title="次选注释" bind:color={schema.comment_text_color} />
+    <ColorSelector title="次选序号" bind:color={schema.label_color} />
+    <ColorSelector title="长按首选背景" bind:color={schema.hilited_callout_back_color} />
+    <ColorSelector title="长按首选文字" bind:color={schema.hilited_callout_foreground_color} />
+    <ColorSelector title="长按气泡背景" bind:color={schema.action_callout_back_color} />
 </div>

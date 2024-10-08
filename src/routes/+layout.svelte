@@ -22,7 +22,7 @@
     // 鳴謝列表
     var credits: [string, string][] = data.credits;
 
-    /** 主題列表及其顯示名稱 */
+    /** 主题列表及其显示名称 */
     const themes: { [key: string]: string } = {
         skeleton: "Skeleton",
         wintry: "Wintry",
@@ -36,11 +36,11 @@
         crimson: "Crimson",
     };
 
-    /** 主題選擇控件綁定值 */
+    /** 主题选擇控件绑定值 */
     var theme = setContext("data-theme", persisted("data-theme", "skeleton"));
     /** 暗色模式監聽值 */
     var darkMode = setContext("darkMode", writable(false));
-    // 設置頁面主題
+    // 设置頁面主题
     $: if (browser) {
         let attr = document.body.attributes.getNamedItem("data-theme");
         if (attr && themes[$theme]) {
@@ -56,19 +56,19 @@
         // 暗色模式監聽值初始化
         updateDarkMode();
 
-        // 判斷使用者的語言，繁體中文與簡體中文何者為先
+        // 判斷使用者的语言，繁体中文與简体中文何者為先
         for (let lang of navigator.languages) {
             switch (lang.toLowerCase()) {
                 case "zh":
                 case "zh-cn":
-                    // 簡體優先，則採用簡體字型
+                    // 简体優先，則採用简体字型
                     document.documentElement.lang = "cmn-Hans-CN";
                     break;
 
                 case "zh-tw":
                 case "zh-hk":
                 case "zh-mo":
-                    // 繁體優先，則採用繁體字型
+                    // 繁体優先，則採用繁体字型
                     document.documentElement.lang = "cmn-Hant-CN";
                     break;
 
@@ -96,14 +96,14 @@
 </script>
 
 <svelte:head>
-    <!-- 頁面標題: "内容標題 - 站點標題" -->
+    <!-- 頁面标题: "内容标题 - 站点标题" -->
     <title>{$page.data.title} · Lost Melody</title>
 </svelte:head>
 
 <div class="flex flex-col min-h-lvh">
-    <!-- 頂部標題欄 -->
+    <!-- 頂部标题欄 -->
     <AppBar gridColumns="grid-cols-3" slotDefault="place-self-center" slotTrail="place-content-end">
-        <!-- 左側動作按鈕 -->
+        <!-- 左側动作按钮 -->
         <svelte:fragment slot="lead">
             <div class="flex items-center space-x-2">
                 <button class="btn-icon btn-icon-sm variant-ghost" on:click={openNavigator}>
@@ -115,10 +115,10 @@
             </div>
         </svelte:fragment>
 
-        <!-- 頁面標題 -->
+        <!-- 頁面标题 -->
         <h2 class="h2 text-nowrap" data-toc-ignore="">{$page.data.title}</h2>
 
-        <!-- 右側動作按鈕 -->
+        <!-- 右側动作按钮 -->
         <svelte:fragment slot="trail">
             <div class="flex items-center space-x-2">
                 <LightSwitch on:click={updateDarkMode} class="variant-ghost" />

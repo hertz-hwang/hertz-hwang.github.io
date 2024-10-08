@@ -41,9 +41,9 @@
         }
     }
 
-    /** 預設鍵盤模板 */
+    /** 预设键盘模板 */
     var predefinedKeyboards: object[] = [];
-    /** 自定義鍵盤存儲位 */
+    /** 自定义键盘存储位 */
     var customKeyboards: object[];
 
     const [actExport, actTemp, actSave, actBatch] = [1, 2, 3, 4];
@@ -76,7 +76,7 @@
     var editorTab = 0;
     const [editKey, editColor, editLayout, editInset, editKeyStyle] = [0, 1, 2, 3, 4];
     const editNames = {
-        [editKey]: "按鍵",
+        [editKey]: "按键",
         [editColor]: "配色",
         [editLayout]: "布局",
         [editInset]: "内距",

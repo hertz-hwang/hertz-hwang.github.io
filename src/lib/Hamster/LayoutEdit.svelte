@@ -8,13 +8,13 @@
     export var landscape: boolean = false;
     export var layout: Keyboard;
 
-    /** 上移按鍵行 */
+    /** 上移按键行 */
     function moveRowUp(index: number): void {
         if (index > 0) {
             [layout.rows[index], layout.rows[index - 1]] = [layout.rows[index - 1], layout.rows[index]];
         }
     }
-    /** 下移按鍵行 */
+    /** 下移按键行 */
     function moveRowDown(index: number): void {
         if (index + 1 < layout.rows.length) {
             [layout.rows[index], layout.rows[index + 1]] = [layout.rows[index + 1], layout.rows[index]];
@@ -51,7 +51,7 @@
 </script>
 
 <div class="w-full p-2 gap-2 flex flex-col rounded-md variant-soft">
-    <!-- 佈局名稱 -->
+    <!-- 布局名称 -->
     <div class="w-full p-[0.5px] rounded-md variant-ringed">
         <div class="w-full flex items-center">
             <div class="h-10 px-2 flex items-center rounded-tl-md variant-ringed">
@@ -62,7 +62,7 @@
                 title="键盘名称"
                 type="text"
                 bind:value={layout.name}
-                placeholder="天行鍵"
+                placeholder="天行键"
                 class="w-[50%] h-10 px-2 rounded-none rounded-tr-md variant-ringed hover:variant-ghost"
             />
         </div>
@@ -81,7 +81,7 @@
         </div>
     </div>
 
-    <!-- 編輯按鍵行數 -->
+    <!-- 编辑按键行数 -->
     <div class="w-full p-[0.5px] rounded-md variant-ringed">
         <IconRange
             icon="mdi:table-cog"
@@ -94,13 +94,13 @@
         />
     </div>
 
-    <!-- 編輯每行按鍵數量 -->
+    <!-- 编辑每行按键数量 -->
     <div class="w-full p-[0.5px] rounded-md variant-ringed">
         <div class="p-[0.5px] rounded-md variant-ringed">
             {#each layout.rows as row, index (row.id)}
                 <IconRange
                     icon="mdi:table-cog"
-                    title="按鍵數量"
+                    title="按键数量"
                     value={row.keys.length}
                     on:change={(event) => {
                         onRowKeysChange(event, index);
@@ -118,7 +118,7 @@
                     </span>
                     <IconButton
                         icon="mdi:arrow-up"
-                        title="整行按鍵上移"
+                        title="整行按键上移"
                         on:click={() => {
                             moveRowUp(index);
                         }}
@@ -126,7 +126,7 @@
                     />
                     <IconButton
                         icon="mdi:arrow-down"
-                        title="整行按鍵下移"
+                        title="整行按键下移"
                         on:click={() => {
                             moveRowDown(index);
                         }}

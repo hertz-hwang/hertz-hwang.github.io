@@ -20,7 +20,7 @@
     }
     var calloutSelectedIndex = 0;
 
-    // 按鍵内距样式
+    // 按键内距样式
     var pl: number, pb: number, pt: number, pr: number;
     $: if (insets.expr) {
         [pl, pb, pt, pr] = insets.insets;

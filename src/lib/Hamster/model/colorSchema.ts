@@ -7,7 +7,7 @@ function newId(): number {
 
 function asString(obj: any, defaultValue?: string): string {
     if (typeof obj === "number") {
-        // 數字轉字符串: 0xabcdef => "0xabcdef"
+        // 数字轉字符串: 0xabcdef => "0xabcdef"
         obj = "0x" + obj.toString(16).padStart(8, "0");
     }
     return typeof obj === "string" ? obj : defaultValue || "";
@@ -70,68 +70,68 @@ export class Color {
     }
 }
 
-/** 配色方案結構定義 */
+/** 配色方案結構定义 */
 export class ColorSchema {
     id: number = newId();
-    /** 配置方案唯一名稱代碼 */
+    /** 配置方案唯一名称代碼 */
     schemaName: string = "schema";
-    /** 顯示名 */
+    /** 显示名 */
     name: string = "配色方案";
     /** 作者 */
     author: string = "佚名";
-    /** 鍵盤背景 */
+    /** 键盘背景 */
     back_color: Color = new Color("#ffffff");
-    /** 按鍵背景 */
+    /** 按键背景 */
     button_back_color: Color = new Color("#ffffff");
-    /** 按鍵按下背景 */
+    /** 按键按下背景 */
     button_pressed_back_color: Color = new Color("#d0d0d0");
-    /** 按鍵氣泡背景 */
+    /** 按键气泡背景 */
     button_bubble_back_color: Color = new Color("#d0d0d0");
-    /** 按鍵文本 */
+    /** 按键文本 */
     button_front_color: Color = new Color("#000000");
-    /** 按鍵按下文本 */
+    /** 按键按下文本 */
     button_pressed_front_color: Color = new Color("#000000");
-    /** 按鍵劃動文本 */
+    /** 按键划动文本 */
     button_swipe_front_color: Color = new Color("#000000");
-    /** 按鍵按下劃動文本 */
+    /** 按键按下划动文本 */
     button_swipe_pressed_front_color: Color = new Color("#000000");
-    /** 鍵面字體大小 */
+    /** 键面字体大小 */
     font_size: number = 0;
-    /** 劃動字體大小 */
+    /** 划动字体大小 */
     swipe_font_size: number = 0;
-    /** 按鍵圓角 */
+    /** 按键圆角 */
     corner_radius: number = 5;
-    /** 按鍵邊框 */
+    /** 按键边框 */
     border_color: Color = new Color("#000000");
-    /** 邊框寛度 */
+    /** 边框宽度 */
     border_size: number = 1;
-    /** 預編輯文本 */
+    /** 预编辑文本 */
     text_color: Color = new Color("#000000");
-    /** 按鍵下邊框 */
+    /** 按键下边框 */
     lower_edge_color: Color = new Color("#000000");
-    /** 按鍵陰影 */
+    /** 按键阴影 */
     shadow_color: Color = new Color("#000000");
-    /** 按鍵陰影大小 */
+    /** 按键阴影大小 */
     shadow_size: number = 0;
-    /** 首選背景 */
+    /** 首选背景 */
     hilited_candidate_back_color: Color = new Color("#ffffff");
-    /** 首選文本 */
+    /** 首选文本 */
     hilited_candidate_text_color: Color = new Color("#000000");
-    /** 首選註釋文本 */
+    /** 首选注释文本 */
     hilited_comment_text_color: Color = new Color("#000000");
-    /** 候選欄首選序號 */
+    /** 候选欄首选序号 */
     hilited_candidate_label_color: Color = new Color("#000000");
-    /** 候選文本 */
+    /** 候选文本 */
     candidate_text_color: Color = new Color("#000000");
-    /** 注釋文本 */
+    /** 注释文本 */
     comment_text_color: Color = new Color("#000000");
-    /** 候選欄次選序號 */
+    /** 候选欄次选序号 */
     label_color: Color = new Color("#000000");
-    /** 長按首選背景 */
+    /** 长按首选背景 */
     hilited_callout_back_color: Color = new Color("#ffffff");
-    /** 長按首選文本 */
+    /** 长按首选文本 */
     hilited_callout_foreground_color: Color = new Color("#000000");
-    /** 長按氣泡背景 */
+    /** 长按气泡背景 */
     action_callout_back_color: Color = new Color("#d0d0d0");
 
     toObject(): object {

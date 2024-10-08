@@ -7,7 +7,7 @@
     import { toastError } from "$lib/utils/error";
 
     export var layout: Keyboard;
-    /** 預設鍵盤模板 */
+    /** 预设键盘模板 */
     export var predefinedKeyboards: object[];
 
     if (!predefinedKeyboards || predefinedKeyboards.length === 0) {
@@ -25,7 +25,7 @@
         return [];
     }
 
-    /** 加載預置鍵盤檔案 */
+    /** 加载预置键盘存档 */
     function loadPredefined(index: number): void {
         if (layout) {
             var initName = layout.name;

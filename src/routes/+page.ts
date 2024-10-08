@@ -2,7 +2,7 @@ import type { PageLoad } from "./$types";
 import type { Profile } from "$lib/Card/AvatarCard";
 import { profilesFromYaml } from "$lib/Card/AvatarCard";
 
-// 導入 yaml 文件數據
+// 導入 yaml 文件数据
 import profilesYaml from "$lib/assets/profiles.yaml?raw";
 
 // 資料卡列表

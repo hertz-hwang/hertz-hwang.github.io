@@ -21,7 +21,7 @@
             </a>
         {/each}
     </nav>
-    <!-- 主題切換 -->
+    <!-- 主题切换 -->
     <div class="sticky top-full m-2 grid grid-cols-2 gap-2">
         <span class="col-span-2 mx-auto inline-flex items-center gap-2">
             <Icon icon="mdi:map-marker-radius" />

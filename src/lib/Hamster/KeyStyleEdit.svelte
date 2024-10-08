@@ -32,13 +32,13 @@
                     <KeyStylePreview {keyStyle} {colorSchema} />
                     <KeyStylePreview pressed {keyStyle} {colorSchema} />
                     <IconButton
-                        title="複製"
+                        title="复制"
                         icon={"mdi:content-copy"}
                         on:click={() => copyKeyStyle(index)}
                         class="h-[48px] px-2 flex items-center variant-ringed hover:variant-ghost active:scale-95"
                     />
                     <IconButton
-                        title="粘貼"
+                        title="粘贴"
                         icon={"mdi:content-paste"}
                         on:click={() => pasteKeyStyle(index)}
                         class="h-[48px] px-2 flex items-center variant-ringed hover:variant-ghost active:scale-95"
@@ -57,10 +57,10 @@
                 <div class="p-1 gap-1 flex flex-col">
                     <div class="h-10 w-full gap-2 flex items-center rounded-md variant-ringed">
                         <Icon icon="mdi:rename-box" class="px-1 w-10 h-8" />
-                        <span class="grow shrink"> 樣式唯一標識名 </span>
+                        <span class="grow shrink"> 样式唯一标识名 </span>
                         <input
-                            title={"樣式標識名, 不可重複.\n" +
-                                "建議使用蛇形或駝峰命名: keyname_style_variant; keynameStyleVariant.\n" +
+                            title={"样式标识名, 不可重复.\n" +
+                                "建议使用蛇形或驼峰命名: keyname_style_variant; keynameStyleVariant.\n" +
                                 "如: space_light_alphabet26, returnDarkNumeric."}
                             type="text"
                             bind:value={keyStyle.name}
@@ -76,50 +76,50 @@
                     <ColorSelector title="按下背景" allowEmpty bind:color={keyStyle.pressedButtonBackgroundColor} />
                     <ColorSelector title="前景" allowEmpty bind:color={keyStyle.buttonForegroundColor} />
                     <ColorSelector title="按下前景" allowEmpty bind:color={keyStyle.pressedButtonForegroundColor} />
-                    <ColorSelector title="劃動前景" allowEmpty bind:color={keyStyle.swipeForegroundColor} />
-                    <ColorSelector title="按下劃動前景" allowEmpty bind:color={keyStyle.pressedSwipeForegroundColor} />
-                    <ColorSelector title="按下氣泡背景" allowEmpty bind:color={keyStyle.buttonBubbleBackgroundColor} />
-                    <ColorSelector title="長按氣泡背景" allowEmpty bind:color={keyStyle.actionCalloutBackgroundColor} />
+                    <ColorSelector title="划动前景" allowEmpty bind:color={keyStyle.swipeForegroundColor} />
+                    <ColorSelector title="按下划动前景" allowEmpty bind:color={keyStyle.pressedSwipeForegroundColor} />
+                    <ColorSelector title="按下气泡背景" allowEmpty bind:color={keyStyle.buttonBubbleBackgroundColor} />
+                    <ColorSelector title="长按气泡背景" allowEmpty bind:color={keyStyle.actionCalloutBackgroundColor} />
                     <ColorSelector
-                        title="長按首選背景"
+                        title="长按首选背景"
                         allowEmpty
                         bind:color={keyStyle.actionCalloutSelectedBackgroundColor}
                     />
                     <ColorSelector
-                        title="長按首選文字"
+                        title="长按首选文字"
                         allowEmpty
                         bind:color={keyStyle.actionCalloutSelectedForegroundColor}
                     />
                     <div class="w-full gap-2 flex items-center">
                         <Icon icon="mdi:rounded-corner" class="px-1 w-10 h-8" />
-                        <span class="grow shrink"> 按鍵圓角 </span>
+                        <span class="grow shrink"> 按键圆角 </span>
                         <input type="range" min="-1" max="32" bind:value={keyStyle.cornerRadius} class="w-[30%]" />
                         <span class="w-6 code"> {keyStyle.cornerRadius} </span>
                     </div>
                     <div class="w-full gap-2 flex items-center">
                         <Icon icon="mdi:border-all-variant" class="px-1 w-10 h-8" />
-                        <span class="grow shrink"> 邊框寛度 </span>
+                        <span class="grow shrink"> 边框宽度 </span>
                         <input type="range" min="-1" max="8" bind:value={keyStyle.borderSize} class="w-[30%]" />
                         <span class="w-6 code"> {keyStyle.borderSize} </span>
                     </div>
-                    <ColorSelector title="邊框" allowEmpty bind:color={keyStyle.borderColor} />
-                    <ColorSelector title="下邊框" allowEmpty bind:color={keyStyle.lowerEdgeColor} />
-                    <ColorSelector title="陰影" allowEmpty bind:color={keyStyle.shadowColor} />
+                    <ColorSelector title="边框" allowEmpty bind:color={keyStyle.borderColor} />
+                    <ColorSelector title="下边框" allowEmpty bind:color={keyStyle.lowerEdgeColor} />
+                    <ColorSelector title="阴影" allowEmpty bind:color={keyStyle.shadowColor} />
                     <div class="w-full gap-2 flex items-center">
                         <Icon icon="mdi:format-size" class="px-1 w-10 h-8" />
-                        <span class="grow shrink"> 陰影大小 </span>
+                        <span class="grow shrink"> 阴影大小 </span>
                         <input type="range" min="-1" max="8" bind:value={keyStyle.shadowSize} class="w-[30%]" />
                         <span class="w-6 code"> {keyStyle.shadowSize} </span>
                     </div>
                     <div class="w-full gap-2 flex items-center">
                         <Icon icon="mdi:format-size" class="px-1 w-10 h-8" />
-                        <span class="grow shrink"> 鍵面字體大小 </span>
+                        <span class="grow shrink"> 键面字体大小 </span>
                         <input type="range" min="0" max="32" bind:value={keyStyle.fontSize} class="w-[30%]" />
                         <span class="w-6 code"> {keyStyle.fontSize} </span>
                     </div>
                     <div class="w-full gap-2 flex items-center">
                         <Icon icon="mdi:format-size" class="px-1 w-10 h-8" />
-                        <span class="grow shrink"> 劃動字體大小 </span>
+                        <span class="grow shrink"> 划动字体大小 </span>
                         <input type="range" min="0" max="24" bind:value={keyStyle.swipeFontSize} class="w-[30%]" />
                         <span class="w-6 code"> {keyStyle.swipeFontSize} </span>
                     </div>

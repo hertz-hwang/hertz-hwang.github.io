@@ -104,7 +104,7 @@
         }}
         class={classNames}
     >
-        <span>顯示所有上劃字符</span>
+        <span>显示所有上划字符</span>
     </IconButton>
     <IconButton
         icon="mdi:eye-off"
@@ -113,7 +113,7 @@
         }}
         class={classNames}
     >
-        <span>隱藏所有上劃字符</span>
+        <span>隐藏所有上划字符</span>
     </IconButton>
     <IconButton
         icon="mdi:eye"
@@ -122,7 +122,7 @@
         }}
         class={classNames}
     >
-        <span>顯示所有下劃字符</span>
+        <span>显示所有下划字符</span>
     </IconButton>
     <IconButton
         icon="mdi:eye-off"
@@ -131,7 +131,7 @@
         }}
         class={classNames}
     >
-        <span>隱藏所有下劃字符</span>
+        <span>隐藏所有下划字符</span>
     </IconButton>
     <IconButton
         icon="mdi:web"
@@ -140,7 +140,7 @@
         }}
         class={classNames}
     >
-        <span>所有上劃字符經由 Rime 處理</span>
+        <span>所有上划字符经由 Rime 处理</span>
     </IconButton>
     <IconButton
         icon="mdi:web-off"
@@ -149,7 +149,7 @@
         }}
         class={classNames}
     >
-        <span>所有上劃字符不經由 Rime 處理</span>
+        <span>所有上划字符不经由 Rime 处理</span>
     </IconButton>
     <IconButton
         icon="mdi:web"
@@ -158,7 +158,7 @@
         }}
         class={classNames}
     >
-        <span>所有下劃字符經由 Rime 處理</span>
+        <span>所有下划字符经由 Rime 处理</span>
     </IconButton>
     <IconButton
         icon="mdi:web-off"
@@ -167,7 +167,7 @@
         }}
         class={classNames}
     >
-        <span>所有下劃字符不經由 Rime 處理</span>
+        <span>所有下划字符不经由 Rime 处理</span>
     </IconButton>
     <IconButton
         icon="mdi:web"
@@ -176,7 +176,7 @@
         }}
         class={classNames}
     >
-        <span>所有按下字符經由 Rime 處理</span>
+        <span>所有按下字符经由 Rime 处理</span>
     </IconButton>
     <IconButton
         icon="mdi:web-off"
@@ -185,7 +185,7 @@
         }}
         class={classNames}
     >
-        <span>所有按下字符不經由 Rime 處理</span>
+        <span>所有按下字符不经由 Rime 处理</span>
     </IconButton>
     <IconButton
         icon="mdi:file-send"
@@ -194,6 +194,6 @@
         }}
         class={classNames}
     >
-        <span>將豎屏鍵寛同步到横屏</span>
+        <span>将竖屏键宽同步到横屏</span>
     </IconButton>
 </div>

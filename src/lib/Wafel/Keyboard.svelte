@@ -9,7 +9,7 @@
             [key: string]: string[];
         };
     };
-    // 讀取字根鍵位映射文件
+    // 讀取字根键位映射文件
     $: {
         compMap = {};
         for (let line of mappings.split("\n")) {
@@ -26,7 +26,7 @@
                 if (!compMap[primary][secondary]) {
                     compMap[primary][secondary] = [];
                 }
-                // 注入當前讀取的字根
+                // 注入当前讀取的字根
                 compMap[primary][secondary].push(comp);
             }
         }
@@ -35,7 +35,7 @@
 
 <div class="gap-1 p-2 m-auto flex flex-col">
     {#each ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM,"] as line}
-        <!-- 逐行繪製字根圖 -->
+        <!-- 逐行繪制字根图 -->
         <div class="flex gap-1">
             <div class="grow" />
             {#each line as key}

@@ -1,4 +1,4 @@
-// 一些模型定義
+// 一些模型定义
 // https://github.com/imfuxiao/Hamster/wiki/%E8%87%AA%E5%AE%9A%E4%B9%89%E9%94%AE%E7%9B%98%E5%B8%83%E5%B1%80
 
 var id: number = Date.now();
@@ -9,7 +9,7 @@ function newId(): number {
 }
 
 /**
-解析函數表達式
+解析函数表达式
 ```
 extractFunc("") => null
 extractFunc("input") => { func: "input", args: "" }
@@ -30,7 +30,7 @@ export enum Direction {
     right = "right",
 }
 
-/** 動作類型枚舉 */
+/** 动作类型枚舉 */
 export enum ActionType {
     backspace = "backspace",
     enter = "enter",
@@ -46,23 +46,23 @@ export enum ActionType {
     nextKeyboard = "nextKeyboard",
 }
 
-/** 動作類型名稱映射表 */
+/** 动作类型名称映射表 */
 export var ActionNames: { [key: string]: string } = {
     [ActionType.backspace]: "退格",
-    [ActionType.enter]: "回車",
+    [ActionType.enter]: "回车",
     [ActionType.shift]: "Shift",
     [ActionType.tab]: "縮進",
     [ActionType.space]: "空格",
     [ActionType.character]: "字符",
     [ActionType.characterMargin]: "佔位",
-    [ActionType.keyboardType]: "鍵盤",
-    [ActionType.symbol]: "符號",
+    [ActionType.keyboardType]: "键盘",
+    [ActionType.symbol]: "符号",
     [ActionType.shortCommand]: "命令",
     [ActionType.none]: "無",
     [ActionType.nextKeyboard]: "地球",
 };
 
-/** 鍵盤類型枚舉 */
+/** 键盘类型枚舉 */
 export enum KeyboardType {
     alphabetic = "alphabetic",
     chinese = "chinese",
@@ -75,17 +75,17 @@ export enum KeyboardType {
     custom = "custom",
 }
 
-/** 鍵盤類型名稱映射表 */
+/** 键盘类型名称映射表 */
 export var KeyboardNames: { [key: string]: string } = {
-    [KeyboardType.alphabetic]: "英文26鍵",
-    [KeyboardType.chinese]: "中文26鍵",
-    [KeyboardType.classifySymbolic]: "分類符號",
+    [KeyboardType.alphabetic]: "英文26键",
+    [KeyboardType.chinese]: "中文26键",
+    [KeyboardType.classifySymbolic]: "分类符号",
     [KeyboardType.chineseNineGrid]: "中文九宫",
-    [KeyboardType.numericNineGrid]: "數字九宫",
-    [KeyboardType.numeric]: "數字",
-    [KeyboardType.symbolic]: "符號",
+    [KeyboardType.numericNineGrid]: "数字九宫",
+    [KeyboardType.numeric]: "数字",
+    [KeyboardType.symbolic]: "符号",
     [KeyboardType.emojis]: "Emoji",
-    [KeyboardType.custom]: "自定義",
+    [KeyboardType.custom]: "自定义",
 };
 
 /** 快捷命令枚舉 */
@@ -125,7 +125,7 @@ export enum ShortCmd {
     openUrl = "openURL",
 }
 
-/** 按鍵動作 */
+/** 按键动作 */
 export class Action {
     type: ActionType = ActionType.none;
     text: string = "";
@@ -174,7 +174,7 @@ export class Action {
                     case ShortCmd.clear:
                         return "󰁮";
                     case ShortCmd.trad:
-                        return "簡";
+                        return "简";
                     case ShortCmd.eng:
                         return "󰗊";
                     case ShortCmd.begin:
@@ -407,7 +407,7 @@ export class Action {
     }
 }
 
-/** 按鍵内距 */
+/** 按键内距 */
 export class ButtonInsets {
     expr: boolean = true;
     value: number = 3;
@@ -519,7 +519,7 @@ export class Label {
     }
 }
 
-/** 按鍵劃動 */
+/** 按键划动 */
 export class Swipe {
     id: number = newId();
     action: Action = new Action();
@@ -585,12 +585,12 @@ export class Callout {
     }
 }
 
-/** 按鍵属性 */
+/** 按键属性 */
 export class Key {
     id: number = newId();
     action: Action = new Action();
     processByRIME: boolean = true;
-    /** 行寛百分比, 1~100 */
+    /** 行宽百分比, 1~100 */
     width: number = 10;
     landscape: number = 10;
     autoWidth: boolean = true;
@@ -758,7 +758,7 @@ export class Key {
     }
 }
 
-/** 按鍵行属性 */
+/** 按键行属性 */
 export class Row {
     id: number = newId();
     keys: Key[] = [];
@@ -808,17 +808,17 @@ export class Row {
     }
 }
 
-/** 鍵盤属性 */
+/** 键盘属性 */
 export class Keyboard {
     id: number = newId();
-    name: string = "鍵盤";
+    name: string = "键盘";
     primary: boolean = false;
     rows: Row[] = [];
     buttonInsets: ButtonInsets = new ButtonInsets();
 
     fromObject(obj: any) {
         if (obj && typeof obj === "object") {
-            this.name = typeof obj.name === "string" ? (this.name = obj.name) : "鍵盤";
+            this.name = typeof obj.name === "string" ? (this.name = obj.name) : "键盘";
             this.primary = obj.isPrimary ? true : false;
             this.buttonInsets.fromObject(obj.buttonInsets);
             this.rows = [];

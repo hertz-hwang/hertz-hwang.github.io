@@ -3,7 +3,7 @@
     import charDivsData from "$lib/assets/wafel/into_div.txt?raw";
     import charFreqsData from "$lib/assets/practice/freq.txt?raw";
 
-    /** 字根-編碼 映射表 */
+    /** 字根-编碼 映射表 */
     var mappings: Map<string, string> = parseMappings(mappingsData);
     /** 漢字-頻率 映射表 */
     var charFreqs: Map<string, number> = parseCharFreq(charFreqsData);

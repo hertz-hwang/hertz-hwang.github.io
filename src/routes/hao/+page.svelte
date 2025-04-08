@@ -1,13 +1,13 @@
 <script lang="ts">
     import Icon from "@iconify/svelte";
-    import Keyboard from "$lib/Wafel/Keyboard.svelte";
-    import into_mappings from "$lib/assets/wafel/into_map.txt?raw";
+    import Keyboard from "$lib/Hao/Keyboard.svelte";
+    import hao_mappings from "$lib/assets/hao/hao_map.txt?raw";
 </script>
 
 <div class="flex flex-col gap-2 p-2">
     <span class="p-1 m-auto rounded-md variant-soft"> 一張字根图 </span>
     <div class="flex overflow-auto">
-        <Keyboard mappings={into_mappings} />
+        <Keyboard mappings={hao_mappings} />
     </div>
 
     <span class="p-1 m-auto rounded-md variant-soft"> 一個下载頁 </span>

@@ -1,6 +1,6 @@
 <script lang="ts">
-    import mappingsData from "$lib/assets/wafel/into_map.txt?raw";
-    import charDivsData from "$lib/assets/wafel/into_div.txt?raw";
+    import mappingsData from "$lib/assets/hao/hao_map.txt?raw";
+    import charDivsData from "$lib/assets/hao/hao_div.txt?raw";
     import charFreqsData from "$lib/assets/practice/freq.txt?raw";
 
     /** 字根-编碼 映射表 */
@@ -14,7 +14,7 @@
         var mappings = new Map<string, string>();
         for (let line of data.split("\n")) {
             if (line && !line.startsWith("#")) {
-                // ["Ka", "上"]
+                // ["Kk", "口"]
                 let [code, comp] = line.split("\t");
                 mappings.set(comp, code);
             }

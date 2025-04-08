@@ -2,6 +2,6 @@ import type { PageLoad } from "./$types";
 
 export const load: PageLoad = (_) => {
     return {
-        title: "雞蛋餅·字根練習",
+        title: "豹碼·字根練習",
     };
 };

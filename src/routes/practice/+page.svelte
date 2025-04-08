@@ -10,16 +10,34 @@
     var charFreqs: Map<string, number> = parseCharFreq(charFreqsData);
     /** 字根-頻率 映射表 */
     var compFreqs: Map<string, number> = parseCompFreq(charDivsData, charFreqs);
+    /** 字根-汉字 映射表 */
+    var compChars: Map<string, string[]> = new Map();
 
     // 练习相关状态
     var currentMode: "learn" | "practice" = "learn";
     var currentComp: string = "";
     var userInput: string = "";
     var isCorrect: boolean | null = null;
-    var score = 0;
-    var total = 0;
-    var practiceHistory: { comp: string; input: string; correct: boolean }[] = [];
+    let score = 0;
+    let total = 0;
+    let practiceHistory: { comp: string; input: string; correct: boolean }[] = [];
     var lastCheckedInput: string = ""; // 记录上次检查的输入
+    let consecutiveCorrect = 0; // 连续答对次数
+    let practicedComps: Set<string> = new Set(); // 使用let声明
+    var showHistory = false; // 控制练习历史的显示
+    let currentPage = 1; // 当前页码
+    const pageSize = 10; // 每页显示数量
+
+    // 添加响应式声明
+    $: practicedCount = practicedComps.size;
+    $: totalCount = mappings.size;
+    $: historyCount = practiceHistory.length;
+    $: totalPages = Math.ceil(historyCount / pageSize);
+    $: displayedHistory = practiceHistory
+        .slice()
+        .reverse()
+        .slice((currentPage - 1) * pageSize, currentPage * pageSize);
+    $: historyText = showHistory ? '收起' : '展開';
 
     // 字根练习记录
     interface CompRecord {
@@ -67,8 +85,8 @@
         const difficultyFactor = 1 - (freq / maxFreq); // 频率越低，难度越大
 
         // 计算掌握度变化
-        const baseChange = correct ? 0.1 : -0.15; // 基础变化：答对+10%，答错-15%
-        const difficultyAdjustment = difficultyFactor * 0.05; // 难度调整：最多±5%
+        const baseChange = correct ? 0.5 : -0.5; // 基础变化：答对+50%，答错-50%
+        const difficultyAdjustment = difficultyFactor * 0.2; // 难度调整：最多±20%
         const change = correct ? 
             baseChange + difficultyAdjustment : // 答对：基础增加 + 难度奖励
             baseChange - difficultyAdjustment;  // 答错：基础减少 - 难度惩罚
@@ -107,15 +125,21 @@
             return sortedByFreq[0];
         }
 
-        // 优先选择高频字根中掌握度低的
-        for (const comp of availableComps.slice(0, 100)) { // 只考虑前100个高频字根
+        // 如果有未练习过的字根，优先选择
+        const unPracticedComps = availableComps.filter(comp => !practicedComps.has(comp));
+        if (unPracticedComps.length > 0) {
+            return unPracticedComps[0];
+        }
+
+        // 如果所有字根都练习过一遍，选择掌握度低的
+        for (const comp of availableComps) {
             const mastery = getMasteryLevel(comp);
-            if (mastery < 0.8) { // 掌握度低于80%的字根
+            if (mastery < 0.6) { // 降低掌握度标准到60%
                 return comp;
             }
         }
 
-        // 如果高频字根都掌握了，随机选择一个未练习过的字根
+        // 如果所有字根都达到基本掌握，随机选择一个
         return availableComps[Math.floor(Math.random() * availableComps.length)];
     }
 
@@ -158,6 +182,31 @@
         return freqs;
     }
 
+    function parseCompChars(data: string) {
+        for (let line of data.split("\n")) {
+            if (line && !line.startsWith("#")) {
+                let [char, div] = line.split("\t");
+                let comps = div.split(" ");
+                for (let comp of comps) {
+                    if (!compChars.has(comp)) {
+                        compChars.set(comp, []);
+                    }
+                    compChars.get(comp)?.push(char);
+                }
+            }
+        }
+    }
+
+    // 获取字根相关的汉字（按频率排序）
+    function getRelatedChars(comp: string): [string, number][] {
+        const chars = compChars.get(comp) || [];
+        return chars
+            .filter(char => charFreqs.has(char)) // 只保留在freq.txt中存在的字
+            .map(char => [char, charFreqs.get(char) || 0] as [string, number])
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 10);
+    }
+
     // 将字根按频率排序并分组
     var sortedComps = Array.from(compFreqs.entries())
         .sort((a, b) => b[1] - a[1]);
@@ -169,13 +218,53 @@
         low: sortedComps.slice(200)         // 其余
     };
 
+    // 从localStorage加载所有练习数据
+    function loadPracticeData() {
+        loadCompRecords();
+        parseCompChars(charDivsData);
+        
+        // 加载练习过的字根
+        const savedPracticed = localStorage.getItem('practicedComps');
+        if (savedPracticed) {
+            practicedComps = new Set(JSON.parse(savedPracticed));
+        }
+
+        // 加载得分
+        const savedScore = localStorage.getItem('practiceScore');
+        if (savedScore) {
+            score = parseInt(savedScore);
+        }
+
+        // 加载连续答对次数
+        const savedConsecutive = localStorage.getItem('consecutiveCorrect');
+        if (savedConsecutive) {
+            consecutiveCorrect = parseInt(savedConsecutive);
+        }
+
+        // 加载练习历史
+        const savedHistory = localStorage.getItem('practiceHistory');
+        if (savedHistory) {
+            practiceHistory = JSON.parse(savedHistory);
+        }
+    }
+
+    // 保存所有练习数据到localStorage
+    function savePracticeData() {
+        saveCompRecords();
+        localStorage.setItem('practicedComps', JSON.stringify(Array.from(practicedComps)));
+        localStorage.setItem('practiceScore', score.toString());
+        localStorage.setItem('consecutiveCorrect', consecutiveCorrect.toString());
+        localStorage.setItem('practiceHistory', JSON.stringify(practiceHistory));
+    }
+
     // 练习模式函数
     function startPractice() {
         currentMode = "practice";
         score = 0;
         total = 0;
+        consecutiveCorrect = 0;
         practiceHistory = [];
-        loadCompRecords();
+        loadPracticeData();
         nextQuestion();
     }
 
@@ -195,14 +284,28 @@
         const correctCode = mappings.get(currentComp);
         isCorrect = userInput.toLowerCase() === correctCode?.toLowerCase();
         if (isCorrect) {
-            score++;
+            consecutiveCorrect++;
+            // 基础得分2分
+            score += 2;
+            // 连续答对奖励
+            if (consecutiveCorrect >= 10) {
+                const bonusMultiplier = Math.floor(consecutiveCorrect / 10); // 每10次翻倍一次
+                score += 2 * bonusMultiplier; // 额外奖励 = 2 * 倍数
+            }
             total++;
             practiceHistory.push({ comp: currentComp, input: userInput, correct: isCorrect });
             updateCompRecord(currentComp, true);
+            // 只有在答对时才添加到已练习字根
+            if (!practicedComps.has(currentComp)) {
+                practicedComps = new Set([...practicedComps, currentComp]);
+                savePracticeData();
+            }
             setTimeout(() => {
                 nextQuestion();
             }, 500);
         } else {
+            consecutiveCorrect = 0; // 答错重置连续答对次数
+            score -= 1; // 答错扣1分
             updateCompRecord(currentComp, false);
             // 2秒后清空输入框和错误提示
             setTimeout(() => {
@@ -210,6 +313,7 @@
                 isCorrect = null;
             }, 2000);
         }
+        savePracticeData();
     }
 
     function handleInput() {
@@ -218,8 +322,41 @@
         }
     }
 
+    // 重置所有练习数据
+    function resetPractice() {
+        if (!confirm('確定要重置所有練習數據嗎？這將清除所有練習記錄、得分和掌握程度。')) {
+            return;
+        }
+        
+        // 重置所有状态
+        score = 0;
+        total = 0;
+        consecutiveCorrect = 0;
+        practiceHistory = [];
+        practicedComps = new Set();
+        compRecords = new Map();
+        lastPracticedComps = [];
+        
+        // 清除localStorage中的数据
+        localStorage.removeItem('compRecords');
+        localStorage.removeItem('practicedComps');
+        localStorage.removeItem('practiceScore');
+        localStorage.removeItem('consecutiveCorrect');
+        localStorage.removeItem('practiceHistory');
+        
+        // 返回学习模式
+        currentMode = "learn";
+    }
+
+    // 切换页码
+    function changePage(page: number) {
+        if (page >= 1 && page <= totalPages) {
+            currentPage = page;
+        }
+    }
+
     onMount(() => {
-        loadCompRecords();
+        loadPracticeData();
     });
 </script>
 
@@ -263,6 +400,12 @@
                 <div class="text-sm text-gray-600 mb-2">
                     掌握程度：{(getMasteryLevel(currentComp) * 100).toFixed(0)}%
                 </div>
+                <div class="text-sm text-gray-600 mb-2">
+                    相關漢字：
+                    {#each getRelatedChars(currentComp) as [char, freq]}
+                        <span class="ml-1">{char}</span>
+                    {/each}
+                </div>
                 <input
                     type="text"
                     bind:value={userInput}
@@ -278,25 +421,61 @@
             </div>
 
             <div class="text-center">
-                <div class="text-lg">得分：{score}/{total}</div>
-                <div class="text-lg">正確率：{total > 0 ? ((score/total) * 100).toFixed(1) : 0}%</div>
+                <div class="text-lg">得分：{score}</div>
+                <div class="text-sm text-gray-600">
+                    練習進度：{practicedCount}/{totalCount}
+                </div>
+                <div class="text-sm text-gray-600">
+                    {#if consecutiveCorrect >= 10}
+                        連續答對{consecutiveCorrect}次，額外+{2 * Math.floor(consecutiveCorrect / 10)}分！
+                    {/if}
+                </div>
             </div>
 
             <div class="space-y-2">
-                <h3 class="font-semibold">練習歷史：</h3>
-                {#each practiceHistory.slice().reverse() as {comp, input, correct}}
-                    <div class="p-2 rounded {correct ? 'variant-soft' : 'variant-ghost'}">
-                        <span class="font-bold">{comp}</span> → 
-                        <span class={correct ? 'text-green-500' : 'text-red-500'}>{input}</span>
-                        <span class="text-sm text-gray-600 ml-2">
-                            (掌握度：{(getMasteryLevel(comp) * 100).toFixed(0)}%)
-                        </span>
-                    </div>
-                {/each}
+                <div class="flex items-center justify-between cursor-pointer" on:click={() => showHistory = !showHistory}>
+                    <h3 class="font-semibold">練習歷史：</h3>
+                    <span class="text-sm text-gray-600">
+                        {historyText} ({historyCount})
+                    </span>
+                </div>
+                {#if showHistory}
+                    {#each displayedHistory as {comp, input, correct}}
+                        <div class="p-2 rounded {correct ? 'variant-soft' : 'variant-ghost'}">
+                            <span class="font-bold">{comp}</span> → 
+                            <span class={correct ? 'text-green-500' : 'text-red-500'}>{input}</span>
+                            <span class="text-sm text-gray-600 ml-2">
+                                (掌握度：{(getMasteryLevel(comp) * 100).toFixed(0)}%)
+                            </span>
+                        </div>
+                    {/each}
+                    {#if totalPages > 1}
+                        <div class="flex justify-center space-x-2 mt-2">
+                            <button 
+                                class="btn variant-ghost" 
+                                on:click={() => changePage(currentPage - 1)}
+                                disabled={currentPage === 1}
+                            >
+                                上一页
+                            </button>
+                            <span class="text-sm text-gray-600">
+                                第 {currentPage} 页，共 {totalPages} 页
+                            </span>
+                            <button 
+                                class="btn variant-ghost" 
+                                on:click={() => changePage(currentPage + 1)}
+                                disabled={currentPage === totalPages}
+                            >
+                                下一页
+                            </button>
+                        </div>
+                    {/if}
+                {/if}
             </div>
 
-            <div class="text-center">
-                <button class="btn variant-ghost ml-2" on:click={() => currentMode = "learn"}>返回學習</button>
+            <div class="text-center space-x-2">
+                <button class="btn variant-ghost" on:click={() => currentMode = "learn"}>返回學習</button>
+                <button class="btn variant-ghost" on:click={resetPractice}>重置練習</button>
             </div>
         </div>
     {/if}

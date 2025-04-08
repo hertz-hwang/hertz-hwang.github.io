@@ -21,11 +21,108 @@
     var practiceHistory: { comp: string; input: string; correct: boolean }[] = [];
     var lastCheckedInput: string = ""; // 记录上次检查的输入
 
+    // 字根练习记录
+    interface CompRecord {
+        lastReview: number;    // 上次复习时间
+        reviewCount: number;   // 复习次数
+        masteryLevel: number;  // 掌握程度（0-1）
+    }
+    
+    var compRecords: Map<string, CompRecord> = new Map();
+    var lastPracticedComps: string[] = []; // 记录最近练习过的字根
+
+    // 从localStorage加载练习记录
+    function loadCompRecords() {
+        const saved = localStorage.getItem('compRecords');
+        if (saved) {
+            const parsed = JSON.parse(saved);
+            compRecords = new Map(Object.entries(parsed));
+        }
+    }
+
+    // 保存练习记录到localStorage
+    function saveCompRecords() {
+        const obj = Object.fromEntries(compRecords);
+        localStorage.setItem('compRecords', JSON.stringify(obj));
+    }
+
+    // 获取字根的掌握程度
+    function getMasteryLevel(comp: string): number {
+        const record = compRecords.get(comp);
+        return record ? record.masteryLevel : 0;
+    }
+
+    // 更新字根的练习记录
+    function updateCompRecord(comp: string, correct: boolean) {
+        const now = Date.now();
+        const record = compRecords.get(comp) || {
+            lastReview: 0,
+            reviewCount: 0,
+            masteryLevel: 0
+        };
+
+        // 计算字根的难度系数（基于使用频率）
+        const freq = compFreqs.get(comp) || 0;
+        const maxFreq = Math.max(...Array.from(compFreqs.values()));
+        const difficultyFactor = 1 - (freq / maxFreq); // 频率越低，难度越大
+
+        // 计算掌握度变化
+        const baseChange = correct ? 0.1 : -0.15; // 基础变化：答对+10%，答错-15%
+        const difficultyAdjustment = difficultyFactor * 0.05; // 难度调整：最多±5%
+        const change = correct ? 
+            baseChange + difficultyAdjustment : // 答对：基础增加 + 难度奖励
+            baseChange - difficultyAdjustment;  // 答错：基础减少 - 难度惩罚
+
+        // 更新掌握程度
+        const oldMastery = record.masteryLevel;
+        const newMastery = Math.max(0, Math.min(1, oldMastery + change));
+
+        compRecords.set(comp, {
+            lastReview: now,
+            reviewCount: record.reviewCount + 1,
+            masteryLevel: newMastery
+        });
+
+        // 更新最近练习的字根列表
+        lastPracticedComps = [comp, ...lastPracticedComps.slice(0, 9)]; // 保留最近10个练习的字根
+
+        saveCompRecords();
+    }
+
+    // 选择下一个要练习的字根
+    function selectNextComp(): string {
+        const allComps = Array.from(compFreqs.keys());
+        
+        // 按频率排序的字根列表
+        const sortedByFreq = allComps.sort((a, b) => 
+            (compFreqs.get(b) || 0) - (compFreqs.get(a) || 0)
+        );
+
+        // 过滤掉最近练习过的字根
+        const availableComps = sortedByFreq.filter(comp => !lastPracticedComps.includes(comp));
+        
+        if (availableComps.length === 0) {
+            // 如果所有字根都练习过了，重置最近练习列表
+            lastPracticedComps = [];
+            return sortedByFreq[0];
+        }
+
+        // 优先选择高频字根中掌握度低的
+        for (const comp of availableComps.slice(0, 100)) { // 只考虑前100个高频字根
+            const mastery = getMasteryLevel(comp);
+            if (mastery < 0.8) { // 掌握度低于80%的字根
+                return comp;
+            }
+        }
+
+        // 如果高频字根都掌握了，随机选择一个未练习过的字根
+        return availableComps[Math.floor(Math.random() * availableComps.length)];
+    }
+
     function parseMappings(data: string): Map<string, string> {
         var mappings = new Map<string, string>();
         for (let line of data.split("\n")) {
             if (line && !line.startsWith("#")) {
-                // ["Kk", "口"]
                 let [code, comp] = line.split("\t");
                 mappings.set(comp, code);
             }
@@ -78,19 +175,18 @@
         score = 0;
         total = 0;
         practiceHistory = [];
+        loadCompRecords();
         nextQuestion();
     }
 
     function nextQuestion() {
-        const allComps = Array.from(compFreqs.keys());
-        currentComp = allComps[Math.floor(Math.random() * allComps.length)];
+        currentComp = selectNextComp();
         userInput = "";
         lastCheckedInput = "";
         isCorrect = null;
     }
 
     function checkAnswer() {
-        // 如果这个输入已经检查过了，就不再重复检查
         if (userInput === lastCheckedInput) {
             return;
         }
@@ -102,18 +198,29 @@
             score++;
             total++;
             practiceHistory.push({ comp: currentComp, input: userInput, correct: isCorrect });
-            // 答案正确时，延迟一小段时间后自动进入下一个
+            updateCompRecord(currentComp, true);
             setTimeout(() => {
                 nextQuestion();
             }, 500);
+        } else {
+            updateCompRecord(currentComp, false);
+            // 2秒后清空输入框和错误提示
+            setTimeout(() => {
+                userInput = "";
+                isCorrect = null;
+            }, 2000);
         }
     }
 
     function handleInput() {
-        if (userInput.length > 0) {
+        if (userInput.length >= 2) {
             checkAnswer();
         }
     }
+
+    onMount(() => {
+        loadCompRecords();
+    });
 </script>
 
 <div class="container mx-auto p-4">
@@ -142,6 +249,7 @@
                                 <div class="text-xl mb-2">{comp}</div>
                                 <div class="text-sm text-gray-600">編碼：{mappings.get(comp) || '未知'}</div>
                                 <div class="text-sm text-gray-600">使用頻率：{freq.toFixed(2)}</div>
+                                <div class="text-sm text-gray-600">掌握程度：{(getMasteryLevel(comp) * 100).toFixed(0)}%</div>
                             </div>
                         {/each}
                     </div>
@@ -152,6 +260,9 @@
         <div class="max-w-md mx-auto space-y-4">
             <div class="text-center">
                 <div class="text-4xl mb-4">{currentComp}</div>
+                <div class="text-sm text-gray-600 mb-2">
+                    掌握程度：{(getMasteryLevel(currentComp) * 100).toFixed(0)}%
+                </div>
                 <input
                     type="text"
                     bind:value={userInput}
@@ -177,12 +288,14 @@
                     <div class="p-2 rounded {correct ? 'variant-soft' : 'variant-ghost'}">
                         <span class="font-bold">{comp}</span> → 
                         <span class={correct ? 'text-green-500' : 'text-red-500'}>{input}</span>
+                        <span class="text-sm text-gray-600 ml-2">
+                            (掌握度：{(getMasteryLevel(comp) * 100).toFixed(0)}%)
+                        </span>
                     </div>
                 {/each}
             </div>
 
             <div class="text-center">
-                <button class="btn variant-filled" on:click={nextQuestion}>下一個</button>
                 <button class="btn variant-ghost ml-2" on:click={() => currentMode = "learn"}>返回學習</button>
             </div>
         </div>

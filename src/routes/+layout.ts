@@ -8,7 +8,8 @@ export const trailingSlash: string = "always";
 var navigations: [string, string][] = [
     ["首页", "/"],
     ["仓输入法·主题设计工具", "/hamster-tools/"],
-    ["豹碼·主頁", "/hao/"],
+    ["豹碼·字根圖", "/hao/"],
+    ["豹碼·字根練習", "/practice/"],
 ];
 // 鳴謝列表
 var credits: [string, string][] = [

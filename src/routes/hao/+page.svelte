@@ -12,11 +12,11 @@
 
     <span class="p-1 m-auto rounded-md variant-soft"> 一個下载頁 </span>
     <div class="btn-group variant-ghost m-auto">
-        <a target="_blank" href="https://github.com/lost-melody/rime-smyh" class="gap-1">
+        <a target="_blank" href="https://github.com/hertz-hwang/rime-hao" class="gap-1">
             <Icon icon="mdi:github" />
             訪问倉庫
         </a>
-        <a target="_blank" href="https://github.com/lost-melody/rime-smyh/releases" class="gap-1">
+        <a target="_blank" href="https://github.com/hertz-hwang/rime-hao/releases" class="gap-1">
             <Icon icon="mdi:download" />
             下载方案包
         </a>

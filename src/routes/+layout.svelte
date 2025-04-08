@@ -126,7 +126,7 @@
                     title="倉庫"
                     class="btn-icon btn-icon-sm variant-ghost"
                     target="_blank"
-                    href="https://github.com/lost-melody/Lost-Melody.github.io"
+                    href="https://github.com/hertz-hwang/rime-hao"
                 >
                     <Icon icon="mdi:github" />
                 </a>

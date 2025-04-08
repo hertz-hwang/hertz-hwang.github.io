@@ -201,10 +201,9 @@
     function getRelatedChars(comp: string): [string, number][] {
         const chars = compChars.get(comp) || [];
         return chars
-            .filter(char => charFreqs.has(char)) // 只保留在freq.txt中存在的字
-            .map(char => [char, charFreqs.get(char) || 0] as [string, number])
-            .sort((a, b) => b[1] - a[1])
-            .slice(0, 10);
+            .map(char => [char, charFreqs.get(char) || 0] as [string, number]) // 使用freq.txt中的频率，如果没有则为0
+            .sort((a, b) => b[1] - a[1]) // 按频率从高到低排序
+            .slice(0, 10); // 只显示前10个
     }
 
     // 将字根按频率排序并分组
@@ -403,7 +402,12 @@
                 <div class="text-sm text-gray-600 mb-2">
                     相關漢字：
                     {#each getRelatedChars(currentComp) as [char, freq]}
-                        <span class="ml-1">{char}</span>
+                        <span class="ml-1 {freq > 0.1 ? 'font-bold' : ''}">
+                            {char}
+                            {#if freq > 0.1}
+                                <span class="text-xs text-gray-500">({freq.toFixed(2)})</span>
+                            {/if}
+                        </span>
                     {/each}
                 </div>
                 <input
